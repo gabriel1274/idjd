@@ -1,6 +1,6 @@
 name: FloatingTexter
-main: FloatingTexter\main
+main: FloatingTexter\Main
 version: "1.0"
 api: [1.12.0]
 load: STARTUP
-author: Heromine/Jon
+author: Heromine/Jon, Flavius12
