@@ -75,10 +75,10 @@ public function translateColors($symbol, $color){
 		$text = $this->cfg->get("text");
 		/*$text1 = $this->cfg->get("text1");    //to implement
 		*$text2 = $this->cfg->get("text2"); */  //to implement
-		$coords = $this->cfg->get("coords");
+                $coords = $this->cfg->getAll()["coords"]
 			$sender = $event->getPlayer();
 				$level = $sender->getLevel();
-					$vect = new Vector3($coords); //to fix the "x, y, z"
+					$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]);
 						$this->cfg->save();                                                   
 							$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, 0.5),"", $color . $text)); //to fix
 		}
