@@ -75,7 +75,7 @@ public function translateColors($symbol, $color){
 		$text = $this->cfg->get("text");
 		/*$text1 = $this->cfg->get("text1");    //to implement
 		*$text2 = $this->cfg->get("text2"); */  //to implement
-                $coords = $this->cfg->getAll()["coords"]
+                $coords = $this->cfg->getAll()["coords"];
 			$sender = $event->getPlayer();
 				$level = $sender->getLevel();
 					$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]);
