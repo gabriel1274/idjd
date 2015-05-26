@@ -1,6 +1,5 @@
 <?php
 namespace FloatingTexter;
-
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
@@ -22,7 +21,6 @@ class Main extends PluginBase implements Listener{
 public $cfg;
 /*	
 public function translateColors($symbol, $color){
-
 	$color = str_replace($symbol."0", TextFormat::BLACK, $color);
 	$color = str_replace($symbol."1", TextFormat::DARK_BLUE, $color);
 	$color = str_replace($symbol."2", TextFormat::DARK_GREEN, $color);
@@ -39,20 +37,23 @@ public function translateColors($symbol, $color){
 	$color = str_replace($symbol."d", TextFormat::LIGHT_PURPLE, $color);
 	$color = str_replace($symbol."e", TextFormat::YELLOW, $color);
 	$color = str_replace($symbol."f", TextFormat::WHITE, $color);
-
 	$color = str_replace($symbol."k", TextFormat::OBFUSCATED, $color);
 	$color = str_replace($symbol."l", TextFormat::BOLD, $color);
 	$color = str_replace($symbol."m", TextFormat::STRIKETHROUGH, $color);
 	$color = str_replace($symbol."n", TextFormat::UNDERLINE, $color);
 	$color = str_replace($symbol."o", TextFormat::ITALIC, $color);
 	$color = str_replace($symbol."r", TextFormat::RESET, $color);
-
 	return $color;
 }
 */
-
 	public function onLoad(){
 		$this->getLogger()->info(TextFormat::GREEN. "Plugin Attivato");  //getLogger() mostra il messaggio dopo info nella console di PM
+	}
+	
+	public function saveFiles(){
+		if(!file_exists($this->getDataFolder())){
+			mkdir($this->getDataFolder());
+		}
 	}
 	
 	public function onDisable(){
@@ -60,7 +61,6 @@ public function translateColors($symbol, $color){
 		$this->saveDefaultConfig();
 		$this->getLogger()->info(TextFormat::RED. "Plugin Disattivato");
 	}
-
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 			@mkdir($this->getDataFolder()); //crea la cartella dove sara il config.yml
@@ -69,19 +69,15 @@ public function translateColors($symbol, $color){
 	}
 		  
 	public function onPlayerJoin(PlayerJoinEvent $event){
-		$color = $this->cfg->get("color");
-		/*$color1 = $this->cfg->get("color1");  //to implement
-		*$color2 = $this->cfg->get("color2");*/ //to implement
 		$text = $this->cfg->get("text");
-		/*$text1 = $this->cfg->get("text1");    //to implement
-		*$text2 = $this->cfg->get("text2"); */  //to implement
-                $coords = $this->cfg->getAll()["coords"];
+		$text1 = $this->cfg->get("text1");    //to implement
+		$text2 = $this->cfg->get("text2");   //to implement
+            $coords = $this->cfg->getAll(["coords"]);
 			$sender = $event->getPlayer();
-				$level = $sender->getLevel();
-					$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]);
+				$level = $sender->getLevel(); //-169,12,486
+					$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]); //$coords["x"], $coords["y"], $coords["z"]
 						$this->cfg->save();                                                   
-							$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, 0.5),"", $color . $text)); //to fix
+							$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5),"", $text . "\n" . $text1 . "\n" . $text2)); //to fix
 		}
 	}
-
 ?>
