@@ -67,17 +67,29 @@ public function translateColors($symbol, $color){
 				$this->saveDefaultConfig(); //salva la configurazione di default del config.yml
 					$this->cfg = $this->getConfig(); //prende le informazioni dal config.yml
 	}
-		  
+	//to improve code formatting a simple improve the code	  
 	public function onPlayerJoin(PlayerJoinEvent $event){
-		$text = $this->cfg->get("text");
-		$text1 = $this->cfg->get("text1");    //to implement
-		$text2 = $this->cfg->get("text2");   //to implement
-            $coords = $this->cfg->getAll()["coords"];
-			$sender = $event->getPlayer();
-				$level = $sender->getLevel(); //-169,12,486
-					$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]); //$coords["x"], $coords["y"], $coords["z"]
-						$this->cfg->save();                                                   
-							$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5),"", $text . "\n" . $text1 . "\n" . $text2)); //to fix
+		$point1 = $this->cfg->getAll()["point1"];
+		$point2 = $this->cfg->getAll()["point2"]
+		$text = $this->cfg->get($point1["text"]);
+		$text1 = $this->cfg->get($point1["text1"]);    
+		$text2 = $this->cfg->get($point1["text2"]);		
+		$text3 = $this->cfg->get($point1["text3"]);
+		$text4 = $this->cfg->get($point1["text4"]);   
+		$text5 = $this->cfg->get($point2["text5"]);		
+		$text6 = $this->cfg->get($point2["text6"]);
+		$text7 = $this->cfg->get($point2["text7"]);    
+		$text8 = $this->cfg->get($point2["text8"]); 
+		$text9 = $this->cfg->get($point2["text9"]); 
+                $coords = $this->cfg->getAll()["coords"];
+		$sender = $event->getPlayer();
+		$level = $sender->getLevel(); //-169,12,486
+		$vect2 = new Vector3($coords2["x"], $coords2["y"], $coords2["z"]);
+		$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]); //$coords["x"], $coords["y"], $coords["z"]
+		$this->cfg->save();   
+		//soon level chooser
+		$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5),"", $text . "\n" . $text1 . "\n" . $text2. "\n" . $text3. "\n" . $text4)); 
+		$level->addParticle(new FloatingTextParticle($vect2->add(0.5, 0.0, -0.5),"", $text5 . "\n" . $text6 . "\n" . $text7. "\n" . $text8. "\n" . $text9)); 
 		}
 	}
 ?>
