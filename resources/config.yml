@@ -1,9 +1,25 @@
 ---
-text: First Line
-text1: Second Line
-text2: Third Line
-coords: 
+#first point info
+point1:
+ "text": Line
+ "text1": Line
+ "text2": Line
+ "text3": Line
+ "text4": Line
+coords1: 
   "x": 0
   "y": 128 
   "z": 0
+  #second point info
+point2:
+ "text5": Line
+ "text6": Line
+ "text7": Line
+ "text8": Line
+ "text9": Line
+coords2: 
+  "x": 0
+  "y": 128 
+  "z": 0
+  #more soon
 ...
