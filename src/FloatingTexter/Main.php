@@ -82,6 +82,7 @@ public function translateColors($symbol, $color){
 		$text8 = $this->cfg->get($point2["text8"]); 
 		$text9 = $this->cfg->get($point2["text9"]); 
                 $coords = $this->cfg->getAll()["coords"];
+                $coords2 = $this->cfg->getAll()["coords2"];
 		$sender = $event->getPlayer();
 		$level = $sender->getLevel(); //-169,12,486
 		$vect2 = new Vector3($coords2["x"], $coords2["y"], $coords2["z"]);
