@@ -71,16 +71,16 @@ public function translateColors($symbol, $color){
 	public function onPlayerJoin(PlayerJoinEvent $event){
 		$point1 = $this->cfg->getAll()["point1"];
 		$point2 = $this->cfg->getAll()["point2"]
-		$text = $this->cfg->get($point1["text"]);
-		$text1 = $this->cfg->get($point1["text1"]);    
-		$text2 = $this->cfg->get($point1["text2"]);		
-		$text3 = $this->cfg->get($point1["text3"]);
-		$text4 = $this->cfg->get($point1["text4"]);   
-		$text5 = $this->cfg->get($point2["text5"]);		
-		$text6 = $this->cfg->get($point2["text6"]);
-		$text7 = $this->cfg->get($point2["text7"]);    
-		$text8 = $this->cfg->get($point2["text8"]); 
-		$text9 = $this->cfg->get($point2["text9"]); 
+		$text = $this->cfg($point1["text"]);
+		$text1 = $this->cfg($point1["text1"]);    
+		$text2 = $this->cfg($point1["text2"]);		
+		$text3 = $this->cfg($point1["text3"]);
+		$text4 = $this->cfg($point1["text4"]);   
+		$text5 = $this->cfg($point2["text5"]);		
+		$text6 = $this->cfg($point2["text6"]);
+		$text7 = $this->cfg($point2["text7"]);    
+		$text8 = $this->cfg($point2["text8"]); 
+		$text9 = $this->cfg($point2["text9"]); 
                 $coords = $this->cfg->getAll()["coords"];
                 $coords2 = $this->cfg->getAll()["coords2"];
 		$sender = $event->getPlayer();
