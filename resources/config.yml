@@ -1,25 +1,23 @@
 ---
-#first point info
-point1:
- "text": Line
- "text1": Line
- "text2": Line
- "text3": Line
- "text4": Line
-coords1: 
-  "x": 0
-  "y": 128 
-  "z": 0
-  #second point info
-point2:
- "text5": Line
- "text6": Line
- "text7": Line
- "text8": Line
- "text9": Line
-coords2: 
-  "x": 0
-  "y": 128 
-  "z": 0
-  #more soon
+# FloatingTexter Config File
+floats:
+  floatname:
+   text:
+    - "Line 1"
+    - "Line 2"
+    - "Line 3"
+    - "More lines"
+    - "I Like Nutella"
+   level: "world"
+   x: 128
+   y: 64
+   z: 128
+  examplefloat:
+   text:
+    - "Welcome to my server!"
+    - "Enjoy!"
+   level: "world"
+   x: 120
+   y: 64
+   z: 128
 ...
