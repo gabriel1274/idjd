@@ -1,5 +1,7 @@
 <?php
+
 namespace FloatingTexter;
+
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
@@ -70,12 +72,14 @@ public function translateColors($symbol, $color){
  
 	public function onPlayerJoin(PlayerJoinEvent $event){
 		foreach($this->cfg->get("floats") as $floats){
-			$level = $floats["level"];
+			$level = $event->getPlayer()->getLevel();
 			$vect = new Vector3($floats["x"], $floats["y"], $floats["z"]);
 			foreach($floats["text"] as $text){
-				$finaltext = $text . "\n";
+				$finaltext .= $text . "\n";
+				if($level->getName() == $floats["level"]){
+					$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5), "", $finaltext));
+				}
 			}
-			$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5), "", $finaltext));
 		}
 	}
 }
