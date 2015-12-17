@@ -1,5 +1,7 @@
 <?php
+
 namespace FloatingTexter;
+
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
@@ -47,7 +49,7 @@ public function translateColors($symbol, $color){
 }
 */
 	public function onLoad(){
-		$this->getLogger()->info(TextFormat::GREEN. "Plugin Attivato");  //getLogger() mostra il messaggio dopo info nella console di PM
+		$this->getLogger()->info(TextFormat::GREEN. "Plugin Attivato");
 	}
 	
 	public function saveFiles(){
@@ -63,34 +65,21 @@ public function translateColors($symbol, $color){
 	}
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-			@mkdir($this->getDataFolder()); //crea la cartella dove sara il config.yml
-				$this->saveDefaultConfig(); //salva la configurazione di default del config.yml
-					$this->cfg = $this->getConfig(); //prende le informazioni dal config.yml
+		@mkdir($this->getDataFolder());
+		$this->saveDefaultConfig();
+		$this->cfg = $this->getConfig();
 	}
-	//to improve code formatting a simple improve the code	  
+ 
 	public function onPlayerJoin(PlayerJoinEvent $event){
-		$point1 = $this->cfg->getAll()["point1"];
-		$point2 = $this->cfg->getAll()["point2"]
-		$text = $this->cfg($point1["text"]);
-		$text1 = $this->cfg($point1["text1"]);    
-		$text2 = $this->cfg($point1["text2"]);		
-		$text3 = $this->cfg($point1["text3"]);
-		$text4 = $this->cfg($point1["text4"]);   
-		$text5 = $this->cfg($point2["text5"]);		
-		$text6 = $this->cfg($point2["text6"]);
-		$text7 = $this->cfg($point2["text7"]);    
-		$text8 = $this->cfg($point2["text8"]); 
-		$text9 = $this->cfg($point2["text9"]); 
-                $coords = $this->cfg->getAll()["coords"];
-                $coords2 = $this->cfg->getAll()["coords2"];
-		$sender = $event->getPlayer();
-		$level = $sender->getLevel(); //-169,12,486
-		$vect2 = new Vector3($coords2["x"], $coords2["y"], $coords2["z"]);
-		$vect = new Vector3($coords["x"], $coords["y"], $coords["z"]); //$coords["x"], $coords["y"], $coords["z"]
-		$this->cfg->save();   
-		//soon level chooser
-		$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5),"", $text . "\n" . $text1 . "\n" . $text2. "\n" . $text3. "\n" . $text4)); 
-		$level->addParticle(new FloatingTextParticle($vect2->add(0.5, 0.0, -0.5),"", $text5 . "\n" . $text6 . "\n" . $text7. "\n" . $text8. "\n" . $text9)); 
+		foreach($this->cfg->get("floats") as $floats){
+			$level = $event->getPlayer()->getLevel();
+			$vect = new Vector3($floats["x"], $floats["y"], $floats["z"]);
+			foreach($floats["text"] as $text){
+				$finaltext .= $text . "\n";
+				if($level->getName() == $floats["level"]){
+					$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5), "", $finaltext));
+				}
+			}
 		}
 	}
-?>
+}
