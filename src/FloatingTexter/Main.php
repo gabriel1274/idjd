@@ -74,8 +74,9 @@ public function translateColors($symbol, $color){
 		foreach($this->cfg->get("floats") as $floats){
 			$level = $event->getPlayer()->getLevel();
 			$vect = new Vector3($floats["x"], $floats["y"], $floats["z"]);
+			$finaltext = "";
 			foreach($floats["text"] as $text){
-				$finaltext = $text . "\n";
+				$finaltext .= $text . "\n";
 				if($level->getName() == $floats["level"]){
 					$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5), "", $finaltext));
 				}
