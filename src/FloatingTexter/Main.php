@@ -2,20 +2,11 @@
 
 namespace FloatingTexter;
 
-use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
-use pocketmine\Server;
-use pocketmine\plugin\PluginManager;
-use pocketmine\plugin\Plugin;
 use pocketmine\event\player\PlayerJoinEvent;
-use pocketmine\utils\Config;
 use pocketmine\level\particle\FloatingTextParticle;
-use pocketmine\level;
-use pocketmine\level\Position;
-use pocketmine\level\Position\getLevel;
-use pocketmine\level\particle\Particle;
 use pocketmine\math\Vector3;
 
 class Main extends PluginBase implements Listener{
@@ -77,9 +68,10 @@ public function translateColors($symbol, $color){
 			$finaltext = "";
 			foreach($floats["text"] as $text){
 				$finaltext .= $text . "\n";
-				if($level->getName() == $floats["level"]){
-					$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5), "", $finaltext));
-				}
+			}
+			
+			if($level->getName() == $floats["level"]){
+				$level->addParticle(new FloatingTextParticle($vect->add(0.5, 0.0, -0.5), "", $finaltext));
 			}
 		}
 	}
